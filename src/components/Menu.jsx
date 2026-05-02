@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 
 const BURGER = [
-  { name: 'Hamburger', price: '8,00 €', allergens: 'a, d, g, l, m', desc: 'Beef 150g, karamellisierte Zwiebeln, frische Tomaten und Gewürzgurken' },
-  { name: 'Cheese Burger', price: '9,00 €', allergens: 'a, d, g, l, m', desc: 'Beef 150g, Cheddar, karamellisierte Zwiebeln, frische Tomaten und Gewürzgurken' },
-  { name: 'Double Cheese Burger', price: '11,00 €', allergens: 'a, d, g, l, m', desc: '2× Beef 150g, Cheddar, karamellisierte Zwiebeln, frische Tomaten und Gewürzgurken' },
-  { name: 'Champignon Burger', price: '10,00 €', allergens: 'a, d, g, l, m', desc: 'Beef 150g, Cheddar, Champignons und karamellisierte Zwiebeln' },
-  { name: 'BBQ Bacon Burger', price: '11,00 €', allergens: '1, 3, a, d, g, l, m', desc: 'Beef 150g, Cheddar, Rinder-Bacon, karamellisierte Zwiebeln und frische Tomaten' },
-  { name: 'Bacon Egg Burger', price: '10,00 €', allergens: '1, 3, a, d, g, l, m', desc: 'Beef 150g, Rinder-Bacon, Ei, Cheddar, karamellisierte Zwiebeln und Tomaten' },
-  { name: 'Blue-Cheese Bacon', price: '11,00 €', allergens: '1, 3, a, d, g, l, m', desc: 'Beef 150g, französischer Blauschimmelkäse, Rinder-Bacon, karamellisierte Zwiebeln und frische Tomaten' },
-  { name: 'Chili Cheese Burger', price: '10,00 €', allergens: 'a, d, g, l, m', desc: 'Beef 150g, Cheddar, Jalapeños, karamellisierte Zwiebeln und frische Tomaten' },
+  { name: 'Hamburger', price: '8,00 €', allergens: 'a, d, g, l, m', desc: 'Beef 150g, karamellisierte Zwiebeln, frische Tomaten und Gewürzgurken', img: '/menu-images/burger/Hamburger.jpeg' },
+  { name: 'Cheese Burger', price: '9,00 €', allergens: 'a, d, g, l, m', desc: 'Beef 150g, Cheddar, karamellisierte Zwiebeln, frische Tomaten und Gewürzgurken', img: '/menu-images/burger/Cheese.jpeg' },
+  { name: 'Double Cheese Burger', price: '11,00 €', allergens: 'a, d, g, l, m', desc: '2× Beef 150g, Cheddar, karamellisierte Zwiebeln, frische Tomaten und Gewürzgurken', img: '/menu-images/burger/Double Cheese.jpeg' },
+  { name: 'Champignon Burger', price: '10,00 €', allergens: 'a, d, g, l, m', desc: 'Beef 150g, Cheddar, Champignons und karamellisierte Zwiebeln', img: '/menu-images/burger/Champignon Burger.jpeg' },
+  { name: 'BBQ Bacon Burger', price: '11,00 €', allergens: '1, 3, a, d, g, l, m', desc: 'Beef 150g, Cheddar, Rinder-Bacon, karamellisierte Zwiebeln und frische Tomaten', img: '/menu-images/burger/BBQ Bacon.jpeg' },
+  { name: 'Bacon Egg Burger', price: '10,00 €', allergens: '1, 3, a, d, g, l, m', desc: 'Beef 150g, Rinder-Bacon, Ei, Cheddar, karamellisierte Zwiebeln und Tomaten', img: '/menu-images/burger/Bacon Egg.jpeg' },
+  { name: 'Blue-Cheese Bacon', price: '11,00 €', allergens: '1, 3, a, d, g, l, m', desc: 'Beef 150g, französischer Blauschimmelkäse, Rinder-Bacon, karamellisierte Zwiebeln und frische Tomaten', img: '/menu-images/burger/Blue Cheese Bacon.jpeg' },
+  { name: 'Chili Cheese Burger', price: '10,00 €', allergens: 'a, d, g, l, m', desc: 'Beef 150g, Cheddar, Jalapeños, karamellisierte Zwiebeln und frische Tomaten', img: '/menu-images/burger/Chilli Cheese.jpeg' },
   { name: 'Crispy Chicken Burger', price: '10,00 €', allergens: 'a, d, g, l, m', desc: 'Crispy Chicken 130g, Cheddar, Jalapeños, karamellisierte Zwiebeln, frische Tomaten' },
   { name: 'Chicken Lemon Burger', price: '10,00 €', allergens: 'a, d, g, l, m', desc: '150g mariniertes Hähnchenbrustfilet, Cheddar, karamellisierte Zwiebeln, frische Tomaten und Gewürzgurken' },
   { name: "Ehso's Burger", price: '12,00 €', allergens: '1, 2, 3, a, d, g, l, m', badge: 'Hausspecial', desc: 'Beef 150g, Cheddar, Sucuk, Schafskäse, karamellisierte Zwiebeln, frische Tomaten und Gewürzgurken' },
@@ -116,10 +116,16 @@ function ImgPlaceholder() {
   )
 }
 
-function MenuCard({ name, price, desc, allergens, badge, children }) {
+function MenuCard({ name, price, desc, allergens, badge, img, children }) {
   return (
     <article className="menu-card">
-      <ImgPlaceholder />
+      {img ? (
+        <div className="menu-card-img">
+          <img src={img} alt={name} />
+        </div>
+      ) : (
+        <ImgPlaceholder />
+      )}
       <div className="menu-card-body">
         {badge && <span className="menu-badge">{badge}</span>}
         <div className="menu-card-header">
