@@ -1,7 +1,14 @@
 import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation'
 import BounceCards from './BounceCards'
 
-const IMAGES = ['', '', '', '', '', '']
+const IMAGES = [
+  '/menu-images/burger/Hamburger.jpeg',
+  '/menu-images/burger/Bacon Egg.jpeg',
+  '/menu-images/burger/Blue Cheese Bacon.jpeg',
+  '/menu-images/burger/Cheese.jpeg',
+  '/menu-images/burger/Chilli Cheese.jpeg',
+  '/menu-images/burger/Double Cheese.jpeg',
+]
 
 const TRANSFORMS = [
   'rotate(8deg) translate(-170px, -198px)',
