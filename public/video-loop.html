@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Video Loop</title>
+  <style>
+    :root{color-scheme: dark}
+    html,body{height:100%;margin:0;background:#000;color:#fff;font-family:system-ui,Segoe UI,Arial}
+    main{height:calc(100% - 56px);display:flex;align-items:center;justify-content:center}
+    video{max-width:100%;max-height:100%;background:#000}
+    .controls{height:56px;display:flex;align-items:center;justify-content:center;gap:12px}
+    .controls button{padding:8px 12px;border-radius:8px;border:1px solid #fff;background:rgba(255,255,255,0.03);color:#fff}
+    .note{padding:24px;text-align:center}
+    a{color:var(--link,#66d9ff)}
+  </style>
+</head>
+<body>
+  <main>
+    <video id="player" autoplay muted playsinline controls></video>
+  </main>
+  <div class="controls">
+    <button id="prev">◀︎ Prev</button>
+    <button id="toggle-loop">Loop playlist</button>
+    <button id="next">Next ▶︎</button>
+  </div>
+
+  <script>
+  (function(){
+    function parseQueryArray(name){
+      const url = new URL(location.href);
+      const v = url.searchParams.get(name);
+      if(!v) return [];
+      return v.split(',').map(s => s.trim()).filter(Boolean);
+    }
+
+    async function fetchIndex(){
+      try{
+        const res = await fetch('/videos/index.json');
+        if(!res.ok) throw new Error('not found');
+        const data = await res.json();
+        if(Array.isArray(data)) return data.map(p=>p.trim()).filter(Boolean);
+      }catch(e){ }
+      return [];
+    }
+
+    const paramFiles = parseQueryArray('files');
+
+    (async ()=>{
+      let files = paramFiles.length ? paramFiles : await fetchIndex();
+      if(files.length === 0){
+        document.body.innerHTML = '<div class="note"><h1>Keine Videos gefunden</h1><p>Lege .mp4 Dateien in <code>/public/videos/</code> ab und erstelle optional <code>/public/videos/index.json</code> als Array von Pfaden. Alternativ öffne diese Seite mit <code>?files=/videos/a.mp4,/videos/b.mp4</code>.</p></div>';
+        return;
+      }
+
+      const player = document.getElementById('player');
+      let idx = 0;
+      let loopPlaylist = true;
+
+      function setSrc(i){
+        player.src = files[i];
+        player.load();
+        player.play().catch(()=>{});
+      }
+
+      player.addEventListener('ended', ()=>{
+        idx++;
+        if(idx >= files.length){
+          if(loopPlaylist) idx = 0; else return;
+        }
+        setSrc(idx);
+      });
+
+      document.getElementById('prev').addEventListener('click', ()=>{
+        idx = (idx - 1 + files.length) % files.length;
+        setSrc(idx);
+      });
+      document.getElementById('next').addEventListener('click', ()=>{
+        idx = (idx + 1) % files.length;
+        setSrc(idx);
+      });
+
+      const loopBtn = document.getElementById('toggle-loop');
+      loopBtn.addEventListener('click', ()=>{
+        loopPlaylist = !loopPlaylist;
+        loopBtn.textContent = loopPlaylist ? 'Loop playlist' : 'No loop';
+      });
+
+      setSrc(idx);
+    })();
+  })();
+  </script>
+</body>
+</html>

@@ -35,6 +35,15 @@ export default function Footer() {
           >
             Gefällt dir diese Website?
           </a>
+          <a
+            href="/video-loop.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-videoloop"
+            style={{ marginLeft: 12 }}
+          >
+            Videoloop
+          </a>
         </div>
       </div>
     </footer>
