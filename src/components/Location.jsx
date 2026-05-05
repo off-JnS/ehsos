@@ -122,6 +122,54 @@ export default function Location() {
               </div>
             </a>
 
+            <a
+              href="https://wolt.com/de/deu/hamburg/restaurant/ehsos-burger?srsltid=AfmBOooYAJS45pBlr2k7eZnUhGHUQj7Jo8B5rjO1BPIHzFSGqd32cwD3"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="info-card info-card--clickable"
+              data-animate="fade-up"
+              data-delay="3"
+            >
+              <div className="info-card-row">
+                <div className="info-card-img-wrap">
+                  <img
+                    src="/menu-images/sonstiges/wolt-logo.png"
+                    alt="Wolt"
+                    className="info-lieferando-logo"
+                  />
+                </div>
+                <div className="info-card-body">
+                  <h3>Wolt</h3>
+                  <p>Jetzt online bestellen & liefern lassen</p>
+                </div>
+                <span className="info-card-cta">Bestellen →</span>
+              </div>
+            </a>
+
+            <a
+              href="https://www.ubereats.com/de/store/ehsos-burger/2Em64aJsUc-urJq2ww0PKQ?diningMode=DELIVERY&surfaceName="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="info-card info-card--clickable"
+              data-animate="fade-up"
+              data-delay="4"
+            >
+              <div className="info-card-row">
+                <div className="info-card-img-wrap">
+                  <img
+                    src="/menu-images/sonstiges/ubereats-logo.png"
+                    alt="Uber Eats"
+                    className="info-lieferando-logo"
+                  />
+                </div>
+                <div className="info-card-body">
+                  <h3>Uber Eats</h3>
+                  <p>Jetzt online bestellen & liefern lassen</p>
+                </div>
+                <span className="info-card-cta">Bestellen →</span>
+              </div>
+            </a>
+
           </div>
 
           {/* ── Right column: hours ── */}
