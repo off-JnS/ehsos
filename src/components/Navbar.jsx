@@ -39,9 +39,7 @@ export default function Navbar() {
           </button>
 
           <ul className={`nav-links${open ? ' open' : ''}`} id="navLinks">
-            <li><a href="/#about" onClick={close}>Über uns</a></li>
             <li><Link to="/speisekarte" onClick={close}>Speisekarte</Link></li>
-            <li><a href="#location" onClick={close}>Standort & Kontakt</a></li>
             <li>
               <OrderDropdown label="Jetzt bestellen" buttonClass="btn btn-sm" wrapperClass="order-picker--auto" />
             </li>
