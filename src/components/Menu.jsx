@@ -257,7 +257,7 @@ export default function Menu() {
               </div>
               <div className="menu-grid">
                 {filtered(CROQUE).map(item => (
-                  <MenuCard key={item.name} name={item.name} allergens={item.allergens} desc={item.desc}>
+                <MenuCard key={item.name} name={item.name} allergens={item.allergens} desc={item.desc} img={item.img}>
                     <div className="menu-croque-prices">
                       <span>8,00 €</span>
                       <span>11,50 €</span>
