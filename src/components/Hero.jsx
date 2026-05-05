@@ -28,8 +28,13 @@ export default function Hero() {
     <header className="hero" id="hero">
       <div className="container hero-content">
         <div className="hero-text">
+          <img
+            src="/images/Logo/logo.png"
+            alt="Ehso's Burger"
+            className="hero-logo"
+            data-animate="fade-down"
+          />
           <p className="hero-tagline" data-animate="fade-down">Takeaway &amp; Delivery</p>
-          <h1 data-animate="fade-up">EHSO'S BURGER</h1>
           <p className="hero-sub" data-animate="fade-up" data-delay="1">
             Frische, handgemachte Burger – direkt zu dir nach Hause oder zum Mitnehmen.
           </p>

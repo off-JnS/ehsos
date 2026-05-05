@@ -6,7 +6,9 @@ export default function Footer() {
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <a href="#" className="logo">EHSO'S<span>BURGER</span></a>
+            <a href="/" className="logo logo--img" aria-label="Ehso's Burger">
+              <img src="/images/Logo/logo.png" alt="Ehso's Burger" className="footer-logo-img" />
+            </a>
             <p>Takeaway &amp; Delivery in Hamburg Lurup</p>
           </div>
 
