@@ -1092,6 +1092,39 @@ img {
   margin-bottom: 20px;
 }
 
+/* Order buttons (Lieferando / Wolt / Uber Eats) */
+.order-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.order-buttons .btn-order {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.04);
+  color: var(--color-light);
+}
+.order-buttons .btn-order img {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+
+.contact-order-logo {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+.contact-order-fallback {
+  font-size: 1.4rem;
+}
+
 /* ===== Location ===== */
 .location-section {
   background: var(--color-dark);

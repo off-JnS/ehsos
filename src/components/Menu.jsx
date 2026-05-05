@@ -350,15 +350,38 @@ export default function Menu() {
         </details>
 
         <div className="menu-cta" data-animate="fade-up">
-          <p>🛵 Aktuelle Verfügbarkeit und Online-Bestellung direkt über Lieferando.</p>
-          <a
-            href="https://www.lieferando.de/speisekarte/ehsos-burger"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary"
-          >
-            Jetzt bestellen
-          </a>
+          <p>🛵 Aktuelle Verfügbarkeit &amp; Online-Bestellung:</p>
+          <div className="order-buttons">
+            <a
+              href="https://www.lieferando.de/speisekarte/ehsos-burger"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-order"
+            >
+              <img src="/menu-images/sonstiges/lieferando-logo.png" alt="Lieferando" />
+              <span>Lieferando</span>
+            </a>
+
+            <a
+              href="https://wolt.com/de/deu/hamburg/restaurant/ehsos-burger?srsltid=AfmBOooYAJS45pBlr2k7eZnUhGHUQj7Jo8B5rjO1BPIHzFSGqd32cwD3"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-order"
+            >
+              <img src="/menu-images/sonstiges/wolt-logo.png" alt="Wolt" />
+              <span>Wolt</span>
+            </a>
+
+            <a
+              href="https://www.ubereats.com/de/store/ehsos-burger/2Em64aJsUc-urJq2ww0PKQ?diningMode=DELIVERY&surfaceName="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-order"
+            >
+              <img src="/menu-images/sonstiges/ubereats-logo.png" alt="Uber Eats" />
+              <span>Uber Eats</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

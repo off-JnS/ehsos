@@ -38,6 +38,62 @@ export default function Contact() {
             <span className="contact-card-cta">Bestellen →</span>
           </a>
 
+          {/* ── Wolt ── */}
+          <a
+            href="https://wolt.com/de/deu/hamburg/restaurant/ehsos-burger?srsltid=AfmBOooYAJS45pBlr2k7eZnUhGHUQj7Jo8B5rjO1BPIHzFSGqd32cwD3"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-card"
+            data-animate="fade-up"
+            data-delay="0.5"
+          >
+            <div className="contact-card-img-wrap">
+              <img
+                src="/menu-images/sonstiges/wolt-logo.png"
+                alt="Wolt"
+                className="contact-order-logo"
+                onError={e => {
+                  e.currentTarget.style.display = 'none'
+                  e.currentTarget.nextSibling.style.display = 'block'
+                }}
+              />
+              <span className="contact-order-fallback" style={{ display: 'none' }}>🍽️</span>
+            </div>
+            <div className="contact-card-body">
+              <h3>Wolt</h3>
+              <p>Jetzt online bestellen &amp; liefern lassen</p>
+            </div>
+            <span className="contact-card-cta">Bestellen →</span>
+          </a>
+
+          {/* ── Uber Eats ── */}
+          <a
+            href="https://www.ubereats.com/de/store/ehsos-burger/2Em64aJsUc-urJq2ww0PKQ?diningMode=DELIVERY&surfaceName="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-card"
+            data-animate="fade-up"
+            data-delay="0.6"
+          >
+            <div className="contact-card-img-wrap">
+              <img
+                src="/menu-images/sonstiges/ubereats-logo.png"
+                alt="Uber Eats"
+                className="contact-order-logo"
+                onError={e => {
+                  e.currentTarget.style.display = 'none'
+                  e.currentTarget.nextSibling.style.display = 'block'
+                }}
+              />
+              <span className="contact-order-fallback" style={{ display: 'none' }}>🚗</span>
+            </div>
+            <div className="contact-card-body">
+              <h3>Uber Eats</h3>
+              <p>Jetzt online bestellen &amp; liefern lassen</p>
+            </div>
+            <span className="contact-card-cta">Bestellen →</span>
+          </a>
+
           {/* ── Telefon ── */}
           <a
             href="tel:+4904076487272"
