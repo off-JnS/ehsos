@@ -4,20 +4,20 @@ import OrderDropdown from './OrderDropdown'
 
 const IMAGES = [
   '/menu-images/burger/Hamburger.jpeg',
-  '/menu-images/burger/Bacon Egg.jpeg',
+  '/menu-images/wrap/Bacon Ei Wrap.jpeg',
   '/menu-images/burger/Blue Cheese Bacon.jpeg',
   '/menu-images/burger/Cheese.jpeg',
-  '/menu-images/burger/Chilli Cheese.jpeg',
+  '/menu-images/croque/Pute Bacon Croque.jpeg',
   '/menu-images/burger/Double Cheese.jpeg',
 ]
 
 const TRANSFORMS = [
-  'rotate(8deg) translate(-170px, -198px)',
-  'rotate(-3deg) translate(0px, -202px)',
-  'rotate(6deg) translate(170px, -194px)',
-  'rotate(-7deg) translate(-170px, -46px)',
-  'rotate(4deg) translate(2px, -42px)',
-  'rotate(-5deg) translate(170px, -48px)',
+  'rotate(8deg) translate(-160px, -118px)',
+  'rotate(-4deg) translate(0px, -122px)',
+  'rotate(6deg) translate(160px, -118px)',
+  'rotate(-7deg) translate(-160px, 116px)',
+  'rotate(3deg) translate(0px, 118px)',
+  'rotate(-5deg) translate(160px, 116px)',
 ]
 
 export default function Hero() {
@@ -47,8 +47,8 @@ export default function Hero() {
           <BounceCards
             images={IMAGES}
             transformStyles={TRANSFORMS}
-            containerWidth={760}
-            containerHeight={520}
+            containerWidth={660}
+            containerHeight={600}
             animationDelay={0.6}
             animationStagger={0.05}
             easeType="elastic.out(1, 0.5)"

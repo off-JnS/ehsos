@@ -27,7 +27,8 @@ export default function Navbar() {
       <nav className={`navbar${scrolled ? ' scrolled' : ''}`} id="navbar">
         <div className="container nav-container">
           <Link to="/" className="logo logo--img" onClick={close} aria-label="Ehso's Burger – Startseite">
-            <img src="/images/Logo/logo.png" alt="Ehso's Burger" className="nav-logo-img" />
+            <img src="/images/Logo/logo.png" alt="" className="nav-logo-img" />
+            <span className="nav-logo-text">EHSO'S<em>BURGER</em></span>
           </Link>
 
           {/* Desktop nav — hidden on mobile via CSS */}
