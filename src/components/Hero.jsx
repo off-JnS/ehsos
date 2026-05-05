@@ -1,5 +1,6 @@
 import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation'
 import BounceCards from './BounceCards'
+import OrderDropdown from './OrderDropdown'
 
 const IMAGES = [
   '/menu-images/burger/Hamburger.jpeg',
@@ -33,14 +34,7 @@ export default function Hero() {
             Frische, handgemachte Burger – direkt zu dir nach Hause oder zum Mitnehmen.
           </p>
           <div className="hero-buttons" data-animate="fade-up" data-delay="2">
-            <a
-              href="https://www.lieferando.de/speisekarte/ehsos-burger"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-            >
-              Bestellen
-            </a>
+            <OrderDropdown />
             <a href="/speisekarte" className="btn btn-outline">Speisekarte</a>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import StaggeredMenu from './StaggeredMenu'
+import OrderDropdown from './OrderDropdown'
 
 const MOBILE_ITEMS = [
   { label: 'Über uns',    ariaLabel: 'Über uns',            link: '/#about' },
@@ -42,15 +43,7 @@ export default function Navbar() {
             <li><Link to="/speisekarte" onClick={close}>Speisekarte</Link></li>
             <li><a href="#location" onClick={close}>Standort & Kontakt</a></li>
             <li>
-              <a
-                href="https://www.lieferando.de/speisekarte/ehsos-burger"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-sm"
-                onClick={close}
-              >
-                Jetzt bestellen
-              </a>
+              <OrderDropdown label="Jetzt bestellen" buttonClass="btn btn-sm" wrapperClass="order-picker--auto" />
             </li>
           </ul>
         </div>

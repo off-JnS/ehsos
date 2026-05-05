@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import OrderDropdown from './OrderDropdown'
 
 const BURGER = [
   { name: 'Hamburger', price: '8,00 €', allergens: 'a, d, g, l, m', desc: 'Beef 150g, karamellisierte Zwiebeln, frische Tomaten und Gewürzgurken', img: '/menu-images/burger/Hamburger.jpeg' },
@@ -85,14 +86,19 @@ const FAMILY_BOXES = [
   },
 ]
 
+// Standard sodas available in two sizes (0,33 l / 1,0 l)
 const GETRAENKE = [
-  { name: 'Cola', allergens: '2, 11', s: '3,50 €', l: '4,00 €' },
-  { name: 'Cola Zero', allergens: '2, 4, 11', s: '3,50 €', l: '4,00 €' },
-  { name: 'Fanta', allergens: '2, 3', s: '3,50 €', l: '4,00 €' },
-  { name: 'Mezzo Mix', allergens: '2, 3, 11', s: '3,50 €', l: '4,00 €' },
-  { name: 'Red Bull (0,25l)', allergens: '2, 11', s: '3,50 €', l: '—' },
-  { name: 'Sprite', allergens: '', s: '3,50 €', l: '4,00 €' },
-  { name: 'Vio Still (0,5l)', allergens: '', s: '2,50 €', l: '—' },
+  { name: 'Cola',      allergens: '2, 11',     s: '3,50 €', l: '4,00 €' },
+  { name: 'Cola Zero', allergens: '2, 4, 11',  s: '3,50 €', l: '4,00 €' },
+  { name: 'Fanta',     allergens: '2, 3',      s: '3,50 €', l: '4,00 €' },
+  { name: 'Mezzo Mix', allergens: '2, 3, 11',  s: '3,50 €', l: '4,00 €' },
+  { name: 'Sprite',    allergens: '',           s: '3,50 €', l: '4,00 €' },
+]
+
+// Fixed-size drinks shown separately to avoid size confusion
+const GETRAENKE_FIXED = [
+  { name: 'Red Bull', size: '0,25 l', price: '3,50 €', allergens: '2, 11' },
+  { name: 'Vio Still', size: '0,5 l',  price: '2,50 €', allergens: '' },
 ]
 
 const TABS = [
@@ -336,6 +342,20 @@ export default function Menu() {
                   </div>
                 ))}
               </div>
+
+              <div className="menu-drinks-fixed">
+                {GETRAENKE_FIXED.map(d => (
+                  <div className="menu-drinks-fixed-card" key={d.name}>
+                    <div className="menu-drinks-fixed-name">
+                      {d.name}
+                      {d.allergens && <small> ({d.allergens})</small>}
+                    </div>
+                    <span className="menu-drinks-fixed-size">{d.size}</span>
+                    <span className="menu-drinks-fixed-price">{d.price}</span>
+                  </div>
+                ))}
+              </div>
+
               <p className="menu-note">Alle Preise inkl. Pfand.</p>
             </>
           )}
@@ -350,38 +370,8 @@ export default function Menu() {
         </details>
 
         <div className="menu-cta" data-animate="fade-up">
-          <p>🛵 Aktuelle Verfügbarkeit &amp; Online-Bestellung:</p>
-          <div className="order-buttons">
-            <a
-              href="https://www.lieferando.de/speisekarte/ehsos-burger"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-order"
-            >
-              <img src="/menu-images/sonstiges/lieferando-logo.png" alt="Lieferando" />
-              <span>Lieferando</span>
-            </a>
-
-            <a
-              href="https://wolt.com/de/deu/hamburg/restaurant/ehsos-burger?srsltid=AfmBOooYAJS45pBlr2k7eZnUhGHUQj7Jo8B5rjO1BPIHzFSGqd32cwD3"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-order"
-            >
-              <img src="/menu-images/sonstiges/wolt-logo.png" alt="Wolt" />
-              <span>Wolt</span>
-            </a>
-
-            <a
-              href="https://www.ubereats.com/de/store/ehsos-burger/2Em64aJsUc-urJq2ww0PKQ?diningMode=DELIVERY&surfaceName="
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-order"
-            >
-              <img src="/menu-images/sonstiges/ubereats-logo.png" alt="Uber Eats" />
-              <span>Uber Eats</span>
-            </a>
-          </div>
+          <p>🛵 Jetzt online bestellen:</p>
+          <OrderDropdown />
         </div>
       </div>
     </section>

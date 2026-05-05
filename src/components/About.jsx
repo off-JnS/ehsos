@@ -50,7 +50,7 @@ export default function About() {
               gegrillten Patties und <strong>hausgemachten Saucen</strong>.
             </p>
             <p className="about-body">
-              Qualität, Geschmack und <strong>Leidenschaft</strong> stehen bei uns an
+              <strong>Qualität, Geschmack</strong> und <strong>Leidenschaft</strong> stehen bei uns an
               erster Stelle. Ob Klassiker oder <strong>Spezialkreationen</strong> – bei
               uns bekommst du Burger, die begeistern und Lust auf mehr machen.{' '}
               <strong>Komm vorbei und überzeuge dich selbst!</strong>

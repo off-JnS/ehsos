@@ -1,3 +1,5 @@
+import OrderDropdown from './OrderDropdown'
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -14,14 +16,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-actions">
-            <a
-              href="https://www.lieferando.de/speisekarte/ehsos-burger"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-            >
-              Jetzt bestellen
-            </a>
+            <OrderDropdown label="Jetzt bestellen" openUp />
           </div>
         </div>
 
@@ -34,15 +29,6 @@ export default function Footer() {
             className="footer-attribution"
           >
             Gefällt dir diese Website?
-          </a>
-          <a
-            href="/video-loop.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-videoloop"
-            style={{ marginLeft: 12 }}
-          >
-            Videoloop
           </a>
         </div>
       </div>
