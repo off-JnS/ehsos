@@ -1713,6 +1713,11 @@ img {
     padding: 0 24px;
   }
 
+  /* Desktop: spread logo and nav links across the available width */
+  .nav-container {
+    justify-content: space-between;
+  }
+
   .nav-toggle {
     display: none;
   }
