@@ -29,5 +29,18 @@ jobs:
           password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
           protocol: ftp
           port: ${{ secrets.HOSTINGER_FTP_PORT }}
-          local-dir: ./dist
-          server-dir: /public_html
+          # Upload server.js, package.json, AND the built dist/ folder
+          # so the Node.js app can run on Hostinger with `npm start`
+          local-dir: ./
+          server-dir: ${{ secrets.HOSTINGER_SERVER_DIR }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+            **/.env*
+            **/src/**
+            **/public/**
+            **/.github/**
+            **/Branding/**
+            **/vite.config.js
