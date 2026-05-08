@@ -11,11 +11,43 @@ const HOURS = [
   { day: 'Sonntag',    open: '13:00', close: '00:00' },
 ]
 
-// 0 = Sunday in JS, remap to Mon=0
-const todayIndex = () => (new Date().getDay() + 6) % 7
+/**
+ * Returns the index (Mon=0 … Sun=6) of the day whose shift is currently
+ * active or most recently finished.
+ *
+ * A closing time of "00:00" means midnight on the dot (no late-night
+ * spillover). Any other time that is <= "06:00" is treated as a
+ * late-night close that crosses into the next calendar day, so if the
+ * current wall-clock time is still before that closing time we keep the
+ * highlight on the previous (business) day.
+ */
+function activeDay() {
+  const now  = new Date()
+  const jsDay = now.getDay()            // 0 = Sun
+  const calIdx = (jsDay + 6) % 7        // Mon=0 … Sun=6
+
+  const hhmm = (str) => {
+    const [h, m] = str.split(':').map(Number)
+    return h * 60 + m
+  }
+
+  const nowMin = now.getHours() * 60 + now.getMinutes()
+
+  // Check if the PREVIOUS day's shift is still running past midnight.
+  // "Still running" = close time is between 00:01 and 06:00 (late-night)
+  // AND current time hasn't reached that close time yet.
+  const prevIdx = (calIdx + 6) % 7
+  const prevClose = hhmm(HOURS[prevIdx].close)
+
+  if (prevClose > 0 && prevClose <= 6 * 60 && nowMin < prevClose) {
+    return prevIdx
+  }
+
+  return calIdx
+}
 
 function HoursCard() {
-  const today = todayIndex()
+  const today = activeDay()
 
   return (
     <div className="info-card hours-card" data-animate="fade-up" data-delay="1">
