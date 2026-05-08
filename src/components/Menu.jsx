@@ -303,8 +303,21 @@ export default function Menu() {
           {active === 'fingerfood' && !noResults && (
             <>
               <div className="menu-grid menu-grid--wide">
-                {filtered(FINGERFOOD).map(item => <MenuCard key={item.name} {...item} />)}
+                {filtered(FINGERFOOD).filter(item => item.img).map(item => <MenuCard key={item.name} {...item} />)}
               </div>
+              {filtered(FINGERFOOD).filter(item => !item.img).length > 0 && (
+                <div className="menu-drinks-fixed menu-fingerfood-list">
+                  {filtered(FINGERFOOD).filter(item => !item.img).map(item => (
+                    <div className="menu-drinks-fixed-card" key={item.name}>
+                      <div className="menu-drinks-fixed-name">
+                        {item.name}{item.allergens && <small> ({item.allergens})</small>}
+                        {item.desc && <span className="menu-fingerfood-desc"> – {item.desc}</span>}
+                      </div>
+                      <span className="menu-drinks-fixed-price">{item.price}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
               <div className="menu-sauces-block">
                 <p className="menu-sauces-title">🫙 Saucen <span>je 1,50 €</span></p>
                 <div className="menu-sauces-grid">
@@ -341,7 +354,6 @@ export default function Menu() {
             <div className="menu-grid menu-grid--boxes">
               {FAMILY_BOXES.map(box => (
                 <article className="menu-card menu-card--box" key={box.name}>
-                  <ImgPlaceholder />
                   <div className="menu-card-body">
                     <span className="menu-badge">{box.tag}</span>
                     <div className="menu-card-header">

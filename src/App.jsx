@@ -6,6 +6,8 @@ import LocationsStripe from './components/LocationsStripe'
 import Location from './components/Location'
 import Footer from './components/Footer'
 import MenuPage from './pages/MenuPage'
+import ImpressumPage from './pages/ImpressumPage'
+import DatenschutzPage from './pages/DatenschutzPage'
 
 function HomePage() {
   return (
@@ -25,6 +27,8 @@ export default function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/speisekarte" element={<MenuPage />} />
+      <Route path="/impressum" element={<ImpressumPage />} />
+      <Route path="/datenschutz" element={<DatenschutzPage />} />
     </Routes>
   )
 }

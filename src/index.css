@@ -1226,6 +1226,42 @@ img {
   max-width: 680px;
 }
 
+/* Fingerfood list rows (items without photos) */
+.menu-fingerfood-list {
+  margin-top: 16px;
+  max-width: 680px;
+}
+.menu-fingerfood-desc {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.82rem;
+}
+
+/* Legal pages (Impressum / Datenschutz) */
+.impressum-content h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 2rem 0 0.5rem;
+}
+.impressum-content h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 1.25rem 0 0.4rem;
+}
+.impressum-content p {
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+.impressum-content a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+.impressum-content strong {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .menu-drinks-fixed-card {
   display: grid;
   grid-template-columns: 1fr auto auto;
