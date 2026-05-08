@@ -42,14 +42,19 @@ function serveFile(res, filePath, status = 200) {
 }
 
 const server = http.createServer((req, res) => {
-  // Strip query string
-  const urlPath = req.url.split('?')[0]
+  // Strip query string and decode percent-encoding
+  const urlPath = decodeURIComponent(req.url.split('?')[0])
+
+  // Resolve the full path and guard against path-traversal attacks
+  const resolved = path.resolve(DIST, '.' + urlPath)
+  if (!resolved.startsWith(DIST + path.sep) && resolved !== DIST) {
+    res.writeHead(403, { 'Content-Type': 'text/plain' })
+    res.end('Forbidden')
+    return
+  }
 
   // Candidates: exact path, then path + index.html
-  const candidates = [
-    path.join(DIST, urlPath),
-    path.join(DIST, urlPath, 'index.html'),
-  ]
+  const candidates = [resolved, path.join(resolved, 'index.html')]
 
   for (const candidate of candidates) {
     if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
