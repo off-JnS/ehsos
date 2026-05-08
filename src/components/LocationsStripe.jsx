@@ -6,7 +6,7 @@ const LOCATIONS = [
   {
     id: 'osdorf',
     text: 'Osdorf',
-    image: '',
+    image: '/images/osdorf/Front Center.jpeg',
     coming: false,
     address: 'Bornheide 47b\n22549 Hamburg',
     hours: 'Mo–So: 11:00 – 22:00 Uhr',
@@ -45,7 +45,7 @@ function LocationModal({ loc, onClose }) {
         <div className="loc-modal-accent" />
 
         {loc.image && (
-          <div className="loc-modal-img" style={{ backgroundImage: `url(${loc.image})` }} aria-hidden="true" />
+          <div className="loc-modal-img" style={{ backgroundImage: `url("${loc.image}")` }} aria-hidden="true" />
         )}
 
         <button className="loc-modal-close" aria-label="Schließen" onClick={onClose}>

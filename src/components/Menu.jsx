@@ -50,16 +50,30 @@ const WRAP = [
 ]
 
 const FINGERFOOD = [
-  { name: 'Chicken Wings', desc: '6 Stück', price: '6,50 €', allergens: 'a' },
-  { name: 'Chicken Nuggets', desc: '6 Stück', price: '6,50 €', allergens: 'a, g' },
-  { name: 'Chili Cheese Nuggets', desc: '6 Stück', price: '5,50 €', allergens: 'a, g' },
-  { name: 'Potato Pops', desc: 'mit Taco Beef & Cheese', price: '7,50 €', allergens: 'a, g' },
-  { name: 'Mozzarella Sticks', desc: '6 Stück', price: '5,50 €', allergens: 'a, g' },
-  { name: 'Knoblauchbrot', desc: 'mit Sour Creme', price: '4,50 €', allergens: 'a, d, g, l' },
-  { name: 'Pommes', desc: 'klassisch', price: '3,00 €', allergens: '' },
+  { name: 'Chicken Wings',        desc: '6 Stück',               price: '6,50 €', allergens: 'a',         img: '/menu-images/fingerfood/Chicken Wings.jpeg' },
+  { name: 'Chicken Nuggets',      desc: '6 Stück',               price: '6,50 €', allergens: 'a, g',      img: '/menu-images/fingerfood/Chicken Nuggets.jpeg' },
+  { name: 'Chili Cheese Nuggets', desc: '6 Stück',               price: '5,50 €', allergens: 'a, g',      img: '/menu-images/fingerfood/Chilli Cheese Puffers.jpeg' },
+  { name: 'Potato Pops',          desc: 'mit Taco Beef & Cheese', price: '7,50 €', allergens: 'a, g' },
+  { name: 'Mozzarella Sticks',    desc: '6 Stück',               price: '5,50 €', allergens: 'a, g',      img: '/menu-images/fingerfood/Mozzarella sticks.jpeg' },
+  { name: 'Knoblauchbrot',        desc: 'mit Sour Creme',        price: '4,50 €', allergens: 'a, d, g, l' },
+  { name: 'Pommes',               desc: 'klassisch',             price: '3,00 €', allergens: '',          img: '/menu-images/fingerfood/French Fries.jpeg' },
 ]
 
-const SAUCEN = "Knoblauch (3,d,l) · Kräuter (1,3,d,l) · Chili (2,3,d,l) · Dänische (1,3,d,l) · Burgersauce (2,a,d,l) · Curry (2,3,d,l) · Ehso's Spicy-sauce (2,3,d,l) · BBQ · Trüffelmayo · Sour Creme (d,g,l) · Cheddar Cheese (g,l) · Ketchup · Mayo"
+const SAUCEN = [
+  { name: 'Knoblauch',           allergens: '3, d, l',    img: '/menu-images/Soßen/Knoblauch Sauce.jpeg' },
+  { name: 'Kräuter',             allergens: '1, 3, d, l' },
+  { name: 'Chili',               allergens: '2, 3, d, l', img: '/menu-images/Soßen/Chilli Sauce.jpeg' },
+  { name: 'Dänische',            allergens: '1, 3, d, l' },
+  { name: 'Burgersauce',         allergens: '2, a, d, l' },
+  { name: 'Curry',               allergens: '2, 3, d, l' },
+  { name: "Ehso's Spicy-Sauce",  allergens: '2, 3, d, l', img: "/menu-images/Soßen/Ehso_s Sauce.jpeg" },
+  { name: 'BBQ',                 allergens: '',           img: '/menu-images/Soßen/BBQ-Sauce.jpeg' },
+  { name: 'Trüffelmayo',         allergens: '' },
+  { name: 'Sour Creme',          allergens: 'd, g, l' },
+  { name: 'Cheddar Cheese',      allergens: 'g, l' },
+  { name: 'Ketchup',             allergens: '' },
+  { name: 'Mayo',                allergens: '' },
+]
 
 const CREPES = [
   { name: 'Crepe Natur', price: '4,90 €', allergens: 'a, d, g', desc: 'Ohne Belag' },
@@ -293,14 +307,33 @@ export default function Menu() {
               </div>
               <div className="menu-sauces-block">
                 <p className="menu-sauces-title">🫙 Saucen <span>je 1,50 €</span></p>
-                <p className="menu-sauces-list">{SAUCEN}</p>
+                <div className="menu-sauces-grid">
+                  {SAUCEN.filter(s => s.img).map(s => (
+                    <div className="menu-sauce-card" key={s.name}>
+                      <img src={s.img} alt={s.name} className="menu-sauce-img" />
+                      <span className="menu-sauce-name">{s.name}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="menu-sauces-list">
+                  {SAUCEN.filter(s => !s.img).map((s, i, arr) => (
+                    <span key={s.name}>{s.name}{s.allergens ? ` (${s.allergens})` : ''}{i < arr.length - 1 ? ' · ' : ''}</span>
+                  ))}
+                </p>
               </div>
             </>
           )}
 
           {active === 'crepes' && !noResults && (
-            <div className="menu-grid menu-grid--wide">
-              {filtered(CREPES).map(item => <MenuCard key={item.name} {...item} />)}
+            <div className="menu-drinks-fixed menu-crepes-list">
+              {filtered(CREPES).map(item => (
+                <div className="menu-drinks-fixed-card" key={item.name}>
+                  <div className="menu-drinks-fixed-name">
+                    {item.name}{item.allergens && <small> ({item.allergens})</small>}
+                  </div>
+                  <span className="menu-drinks-fixed-price">{item.price}</span>
+                </div>
+              ))}
             </div>
           )}
 

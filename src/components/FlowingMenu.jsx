@@ -164,7 +164,7 @@ function MenuItem({ link, text, image, speed, textColor, marqueeBgColor, marquee
               <div className="marquee__part" key={idx} style={{ color: marqueeTextColor }}>
                 <span>{text}</span>
                 {image
-                  ? <div className="marquee__img" style={{ backgroundImage: `url(${image})` }} />
+                  ? <div className="marquee__img" style={{ backgroundImage: `url("${image}")` }} />
                   : <div className="marquee__img marquee__img--empty" />
                 }
               </div>
