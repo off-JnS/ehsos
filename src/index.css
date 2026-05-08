@@ -1452,6 +1452,8 @@ img {
 .hours-card {
   padding: 24px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .info-card-header {
@@ -1475,7 +1477,8 @@ img {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .hours-row {
@@ -1685,8 +1688,34 @@ img {
   }
 
   /* Use the small logo from the mobile staggered menu to avoid duplicate logos */
-  .navbar .logo {
+  /* Logo is now shown in the navbar on mobile — matches desktop layout */
+
+  /* Logo left, toggle right on mobile */
+  .nav-container {
+    justify-content: space-between;
+  }
+
+  /* Align StaggeredMenu toggle to navbar height */
+  .sm-mobile-menu .staggered-menu-header {
+    height: var(--nav-height);
+    padding: 0 16px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* Hide the StaggeredMenu's own brand text — navbar logo handles it */
+  .sm-mobile-menu .sm-logo {
+    display: none !important;
+  }
+
+  /* Hide "Menu"/"Close" text label — keep only the icon */
+  .sm-mobile-menu .sm-toggle-textWrap {
     display: none;
+  }
+
+  /* Make both lines of the navbar brand text orange on mobile */
+  .nav-logo-text {
+    color: var(--color-primary);
   }
 
   /* Tighter spacing for About section on mobile */

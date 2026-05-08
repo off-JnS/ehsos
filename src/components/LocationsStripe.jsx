@@ -15,8 +15,8 @@ const LOCATIONS = [
   },
   {
     id: 'coming-soon',
-    text: 'Kommt bald',
-    image: '',
+    text: 'Harburg',
+    image: '/images/kommt-bald/Harburg.jpeg',
     coming: true,
     address: null,
     hours: null,
@@ -43,6 +43,10 @@ function LocationModal({ loc, onClose }) {
         onClick={e => e.stopPropagation()}
       >
         <div className="loc-modal-accent" />
+
+        {loc.image && (
+          <div className="loc-modal-img" style={{ backgroundImage: `url(${loc.image})` }} aria-hidden="true" />
+        )}
 
         <button className="loc-modal-close" aria-label="Schließen" onClick={onClose}>
           ✕

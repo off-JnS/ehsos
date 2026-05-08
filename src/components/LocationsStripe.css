@@ -54,6 +54,15 @@
   border-radius: 20px 20px 0 0;
 }
 
+.loc-modal-img {
+  width: calc(100% + 48px);
+  margin: 12px -24px 20px;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+}
+
 /* Close button — 44px minimum touch target */
 .loc-modal-close {
   position: absolute;
