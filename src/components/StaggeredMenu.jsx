@@ -1,5 +1,6 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
+import OrderDropdown from './OrderDropdown'
 import './StaggeredMenu.css'
 
 export const StaggeredMenu = ({
@@ -403,10 +404,29 @@ export const StaggeredMenu = ({
               items.map((it, idx) => {
                 const label = (it.label || '').toString()
                 const isCTA = /bestell/i.test(label) || it.cta === true
+                if (isCTA) {
+                  return (
+                    <li className="sm-panel-itemWrap" key={label + idx}>
+                      <div
+                        className="sm-panel-item sm-panel-cta sm-panel-item--order"
+                        data-index={idx + 1}
+                      >
+                        <span className="sm-panel-itemLabel">
+                          <OrderDropdown
+                            label={label}
+                            buttonClass="sm-order-btn"
+                            wrapperClass="sm-order-picker"
+                            openUp={false}
+                          />
+                        </span>
+                      </div>
+                    </li>
+                  )
+                }
                 return (
                   <li className="sm-panel-itemWrap" key={label + idx}>
                     <a
-                      className={`sm-panel-item${isCTA ? ' sm-panel-cta' : ''}`}
+                      className="sm-panel-item"
                       href={it.link}
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}

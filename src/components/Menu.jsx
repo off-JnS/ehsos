@@ -100,19 +100,23 @@ const FAMILY_BOXES = [
   },
 ]
 
-// Standard sodas available in two sizes (0,33 l / 1,0 l)
+// Branded drinks — single size
 const GETRAENKE = [
-  { name: 'Cola',      allergens: '2, 11',     s: '3,50 €', l: '4,00 €' },
-  { name: 'Cola Zero', allergens: '2, 4, 11',  s: '3,50 €', l: '4,00 €' },
-  { name: 'Fanta',     allergens: '2, 3',      s: '3,50 €', l: '4,00 €' },
-  { name: 'Mezzo Mix', allergens: '2, 3, 11',  s: '3,50 €', l: '4,00 €' },
-  { name: 'Sprite',    allergens: '',           s: '3,50 €', l: '4,00 €' },
-]
-
-// Fixed-size drinks shown separately to avoid size confusion
-const GETRAENKE_FIXED = [
-  { name: 'Red Bull', size: '0,25 l', price: '3,50 €', allergens: '2, 11' },
-  { name: 'Vio Still', size: '0,5 l',  price: '2,50 €', allergens: '' },
+  { name: 'Fritz-Limo Honigmelone',              price: '3,50 €' },
+  { name: 'Fritz-Kola Original',                 price: '3,50 €' },
+  { name: 'Fritz-Spritz bio Apfelschorle',       price: '3,50 €' },
+  { name: 'Fritz-Kola classic light',            price: '3,50 €' },
+  { name: 'Fritz-Limo Orange',                   price: '3,50 €' },
+  { name: 'Fritz-Limo Apfel Kirsch Holunder',    price: '3,50 €' },
+  { name: 'Fritz-Limo Zitrone',                  price: '3,50 €' },
+  { name: 'Fritz-Kola Mischmasch',               price: '3,50 €' },
+  { name: 'Fritz-Kola Super Zero',               price: '3,50 €' },
+  { name: 'Capri-Sonne Multivitamin',            price: '2,00 €' },
+  { name: 'Durstlöscher Orange',                 price: '2,00 €' },
+  { name: 'Durstlöscher Multivitamin 12 Frucht', price: '2,00 €' },
+  { name: 'Durstlöscher Eistee Pfirsich',        price: '2,00 €' },
+  { name: 'Durstlöscher Eistee Zitrone',         price: '2,00 €' },
+  { name: 'Red Bull Zero',                       price: '3,50 €' },
 ]
 
 const TABS = [
@@ -122,6 +126,7 @@ const TABS = [
   { id: 'fingerfood',label: 'Finger Food', icon: '🍟' },
   { id: 'crepes',    label: 'Crêpes',      icon: '🧇' },
   { id: 'familybox', label: 'Family Box',  icon: '📦' },
+  { id: 'saucen',    label: 'Saucen',      icon: '🫙' },
   { id: 'getraenke', label: 'Getränke',    icon: '🥤' },
 ]
 
@@ -162,7 +167,7 @@ function MenuCard({ name, price, desc, allergens, badge, img, children }) {
 
 const SEARCHABLE = { burger: BURGER, croque: CROQUE, wrap: WRAP, fingerfood: FINGERFOOD, crepes: CREPES }
 
-const TAB_COUNTS = { burger: BURGER.length, croque: CROQUE.length, wrap: WRAP.length, fingerfood: FINGERFOOD.length, crepes: CREPES.length, familybox: FAMILY_BOXES.length, getraenke: GETRAENKE.length }
+const TAB_COUNTS = { burger: BURGER.length, croque: CROQUE.length, wrap: WRAP.length, fingerfood: FINGERFOOD.length, crepes: CREPES.length, familybox: FAMILY_BOXES.length, saucen: SAUCEN.length, getraenke: GETRAENKE.length }
 
 export default function Menu() {
   const [active, setActive] = useState('burger')
@@ -318,22 +323,6 @@ export default function Menu() {
                   ))}
                 </div>
               )}
-              <div className="menu-sauces-block">
-                <p className="menu-sauces-title">🫙 Saucen <span>je 1,50 €</span></p>
-                <div className="menu-sauces-grid">
-                  {SAUCEN.filter(s => s.img).map(s => (
-                    <div className="menu-sauce-card" key={s.name}>
-                      <img src={s.img} alt={s.name} className="menu-sauce-img" />
-                      <span className="menu-sauce-name">{s.name}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="menu-sauces-list">
-                  {SAUCEN.filter(s => !s.img).map((s, i, arr) => (
-                    <span key={s.name}>{s.name}{s.allergens ? ` (${s.allergens})` : ''}{i < arr.length - 1 ? ' · ' : ''}</span>
-                  ))}
-                </p>
-              </div>
             </>
           )}
 
@@ -369,38 +358,45 @@ export default function Menu() {
             </div>
           )}
 
-          {active === 'getraenke' && (
+          {active === 'saucen' && (
             <>
-              <div className="menu-drinks-table">
-                <div className="menu-drinks-header">
-                  <span>Getränk</span>
-                  <span>0,33 l</span>
-                  <span>1,0 l</span>
-                </div>
-                {GETRAENKE.map(d => (
-                  <div className="menu-drinks-row" key={d.name}>
-                    <span className="menu-drinks-name">
-                      {d.name}{d.allergens && <small> ({d.allergens})</small>}
+              <div className="menu-info-strip">
+                <span>🫙 Alle Saucen je 1,50 €</span>
+              </div>
+              <div className="menu-sauces-grid" style={{ marginTop: '16px' }}>
+                {SAUCEN.filter(s => s.img).map(s => (
+                  <div className="menu-sauce-card" key={s.name}>
+                    <img src={s.img} alt={s.name} className="menu-sauce-img" />
+                    <span className="menu-sauce-name">
+                      {s.name}
+                      {s.allergens && <span className="menu-sauce-allergen">({s.allergens})</span>}
                     </span>
-                    <span>{d.s}</span>
-                    <span>{d.l}</span>
                   </div>
                 ))}
               </div>
-
-              <div className="menu-drinks-fixed">
-                {GETRAENKE_FIXED.map(d => (
-                  <div className="menu-drinks-fixed-card" key={d.name}>
+              <div className="menu-drinks-fixed" style={{ marginTop: '16px' }}>
+                {SAUCEN.filter(s => !s.img).map(s => (
+                  <div className="menu-drinks-fixed-card" key={s.name}>
                     <div className="menu-drinks-fixed-name">
-                      {d.name}
-                      {d.allergens && <small> ({d.allergens})</small>}
+                      {s.name}{s.allergens && <small> ({s.allergens})</small>}
                     </div>
-                    <span className="menu-drinks-fixed-size">{d.size}</span>
+                    <span className="menu-drinks-fixed-price">1,50 €</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {active === 'getraenke' && (
+            <>
+              <div className="menu-drinks-fixed">
+                {GETRAENKE.map(d => (
+                  <div className="menu-drinks-fixed-card" key={d.name}>
+                    <div className="menu-drinks-fixed-name">{d.name}</div>
                     <span className="menu-drinks-fixed-price">{d.price}</span>
                   </div>
                 ))}
               </div>
-
               <p className="menu-note">Alle Preise inkl. Pfand.</p>
             </>
           )}

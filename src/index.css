@@ -1071,35 +1071,6 @@ img {
 }
 
 /* --- Sauces --- */
-.menu-sauces-block {
-  background: var(--color-surface);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius);
-  padding: 18px 22px;
-  margin-top: 24px;
-}
-
-.menu-sauces-title {
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.menu-sauces-title span {
-  color: var(--color-primary);
-  margin-left: 8px;
-  font-size: 0.78rem;
-}
-
-.menu-sauces-list {
-  font-size: 0.86rem;
-  color: var(--color-muted);
-  line-height: 1.7;
-}
-
-/* Sauce image cards */
 .menu-sauces-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1128,6 +1099,13 @@ img {
   color: rgba(255, 255, 255, 0.7);
   text-align: center;
   line-height: 1.2;
+}
+
+.menu-sauce-allergen {
+  display: block;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 2px;
 }
 
 /* --- Family Box --- */
@@ -1159,60 +1137,14 @@ img {
   font-weight: 700;
 }
 
-/* --- Drinks table --- */
-.menu-drinks-table {
-  background: var(--color-surface);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius);
-  overflow: hidden;
-  width: 100%;
-  max-width: 540px;
-}
-
-.menu-drinks-header,
-.menu-drinks-row {
-  display: grid;
-  grid-template-columns: 1fr 64px 64px;
-}
-
-.menu-drinks-header {
-  background: rgba(249, 115, 22, 0.12);
-  padding: 10px 18px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.menu-drinks-header span:not(:first-child),
-.menu-drinks-row span:not(:first-child) {
-  text-align: right;
-}
-
-.menu-drinks-row {
-  padding: 10px 18px;
-  font-size: 0.88rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.menu-drinks-row span:not(:first-child) {
-  color: var(--color-primary);
-  font-weight: 600;
-}
-
-.menu-drinks-name small {
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 0.72rem;
-}
-
+/* --- Drinks / Flat list --- */
 .menu-note {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.28);
   margin-top: 10px;
 }
 
-/* --- Fixed-size drinks (e.g. Red Bull 0,25 l, Vio Still 0,5 l) --- */
+/* --- Fixed-size drinks / list rows --- */
 .menu-drinks-fixed {
   display: flex;
   flex-direction: column;
@@ -1262,6 +1194,65 @@ img {
   color: rgba(255, 255, 255, 0.85);
 }
 
+/* ── Map picker bottom sheet ── */
+.map-picker-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 0 env(safe-area-inset-bottom, 0);
+}
+
+.map-picker-sheet {
+  width: 100%;
+  max-width: 480px;
+  background: #1c1c1e;
+  border-radius: 18px 18px 0 0;
+  padding: 8px 0 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-picker-title {
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 8px 24px 12px;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.map-picker-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 16px 24px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.map-picker-btn:hover,
+.map-picker-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.map-picker-btn--cancel {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
 .menu-drinks-fixed-card {
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -1294,17 +1285,6 @@ img {
 .menu-drinks-fixed-name small {
   color: rgba(255, 255, 255, 0.3);
   font-size: 0.72rem;
-}
-
-.menu-drinks-fixed-size {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  padding: 2px 10px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.6);
-  white-space: nowrap;
 }
 
 .menu-drinks-fixed-price {

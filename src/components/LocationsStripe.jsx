@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import FlowingMenu from './FlowingMenu'
+import OrderDropdown from './OrderDropdown'
 import './LocationsStripe.css'
 
 const LOCATIONS = [
@@ -95,22 +96,12 @@ function LocationModal({ loc, onClose }) {
               </div>
             )}
 
-            <div className="loc-modal-row">
-              <span className="loc-modal-row-icon">🛵</span>
-              <div>
-                <p className="loc-modal-label">Bestellen</p>
-                <p className="loc-modal-value">Takeaway &amp; Delivery</p>
-              </div>
-            </div>
-
-            <a
-              href={loc.lieferando}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="loc-modal-cta"
-            >
-              Jetzt auf Lieferando bestellen →
-            </a>
+            <OrderDropdown
+              label="Jetzt bestellen"
+              buttonClass="loc-modal-cta"
+              wrapperClass="loc-modal-order-picker"
+              openUp
+            />
           </div>
         )}
       </div>
