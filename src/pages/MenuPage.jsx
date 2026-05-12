@@ -17,7 +17,7 @@ export default function MenuPage() {
       <main>
         <Menu />
       </main>
-      <Footer />
+      <Footer hideOrder />
     </>
   )
 }

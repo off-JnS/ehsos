@@ -1,6 +1,6 @@
 import OrderDropdown from './OrderDropdown'
 
-export default function Footer() {
+export default function Footer({ hideOrder = false }) {
   return (
     <footer className="footer">
       <div className="container">
@@ -18,7 +18,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-actions">
-            <OrderDropdown label="Jetzt bestellen" openUp />
+            {!hideOrder && <OrderDropdown label="Jetzt bestellen" openUp />}
           </div>
         </div>
 
