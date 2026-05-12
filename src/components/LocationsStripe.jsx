@@ -26,21 +26,19 @@ const LOCATIONS = [
   },
 ]
 
-function LocationModal({ loc, onClose }) {
-  const [showMapPicker, setShowMapPicker] = useState(false)
-  const isAppleDevice = /iPhone|iPad|iPod/.test(navigator.userAgent)
+function getMapsUrl(address) {
+  const ua = navigator.userAgent
+  const q = encodeURIComponent(address)
+  if (/iPhone|iPad|iPod/.test(ua)) return `maps://?q=${q}`
+  if (/Macintosh/.test(ua))        return `https://maps.apple.com/?q=${q}`
+  return `https://maps.google.com/?q=${q}`
+}
 
+function LocationModal({ loc, onClose }) {
   const mapsAddress = loc.address ? loc.address.replace('\n', ', ') : ''
-  const googleMapsUrl = `https://maps.google.com/?q=${encodeURIComponent(mapsAddress)}`
-  const appleMapsUrl  = `maps://?q=${encodeURIComponent(mapsAddress)}`
 
   const handleAddressClick = () => {
-    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 768
-    if (isMobile) {
-      setShowMapPicker(true)
-    } else {
-      window.open(googleMapsUrl, '_blank', 'noopener,noreferrer')
-    }
+    window.open(getMapsUrl(mapsAddress), '_blank', 'noopener,noreferrer')
   }
 
   // Close on Escape key
@@ -130,47 +128,6 @@ function LocationModal({ loc, onClose }) {
           </div>
         )}
 
-        {showMapPicker && (
-          <div
-            className="map-picker-overlay"
-            onClick={() => setShowMapPicker(false)}
-            role="presentation"
-          >
-            <div
-              className="map-picker-sheet"
-              role="dialog"
-              aria-modal="true"
-              aria-label="In Karten öffnen"
-              onClick={e => e.stopPropagation()}
-            >
-              <p className="map-picker-title">In Karten öffnen</p>
-              <a
-                href={googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="map-picker-btn"
-                onClick={() => setShowMapPicker(false)}
-              >
-                🗺️ Google Maps
-              </a>
-              {isAppleDevice && (
-                <a
-                  href={appleMapsUrl}
-                  className="map-picker-btn"
-                  onClick={() => setShowMapPicker(false)}
-                >
-                  🍎 Apple Maps
-                </a>
-              )}
-              <button
-                className="map-picker-cancel"
-                onClick={() => setShowMapPicker(false)}
-              >
-                Abbrechen
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   )
