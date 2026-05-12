@@ -26,19 +26,12 @@ const LOCATIONS = [
   },
 ]
 
-function getMapsUrl(address) {
-  const ua = navigator.userAgent
-  const q = encodeURIComponent(address)
-  if (/iPhone|iPad|iPod/.test(ua)) return `maps://?q=${q}`
-  if (/Macintosh/.test(ua))        return `https://maps.apple.com/?q=${q}`
-  return `https://maps.google.com/?q=${q}`
-}
-
 function LocationModal({ loc, onClose }) {
   const mapsAddress = loc.address ? loc.address.replace('\n', ', ') : ''
+  const googleMapsUrl = `https://maps.google.com/?q=${encodeURIComponent(mapsAddress)}`
 
   const handleAddressClick = () => {
-    window.open(getMapsUrl(mapsAddress), '_blank', 'noopener,noreferrer')
+    window.open(googleMapsUrl, '_blank', 'noopener,noreferrer')
   }
 
   // Close on Escape key

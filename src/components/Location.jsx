@@ -1,12 +1,5 @@
 const ADDRESS = 'Bornheide 47b, 22549 Hamburg'
-
-function getMapsUrl(address) {
-  const ua = navigator.userAgent
-  const q = encodeURIComponent(address)
-  if (/iPhone|iPad|iPod/.test(ua)) return `maps://?q=${q}`
-  if (/Macintosh/.test(ua))        return `https://maps.apple.com/?q=${q}`
-  return `https://maps.google.com/?q=${q}`
-}
+const MAPS_URL = `https://maps.google.com/?q=${encodeURIComponent(ADDRESS)}`
 
 const HOURS = [
   { day: 'Montag',     open: '15:00', close: '00:00' },
@@ -82,7 +75,7 @@ function HoursCard() {
 
 export default function Location() {
   const handleAddressClick = () => {
-    window.open(getMapsUrl(ADDRESS), '_blank', 'noopener,noreferrer')
+    window.open(MAPS_URL, '_blank', 'noopener,noreferrer')
   }
 
   return (
