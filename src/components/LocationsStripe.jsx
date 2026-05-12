@@ -19,7 +19,7 @@ const LOCATIONS = [
     text: 'Harburg',
     image: '/images/kommt-bald/Harburg.jpeg',
     coming: false,
-    address: 'An den Höfen 11\n21217 Seevetal',
+    address: 'An den Höfen 1\n21217 Seevetal',
     hours: null,
     phone: null,
     lieferando: null,
@@ -27,6 +27,22 @@ const LOCATIONS = [
 ]
 
 function LocationModal({ loc, onClose }) {
+  const [showMapPicker, setShowMapPicker] = useState(false)
+  const isAppleDevice = /iPhone|iPad|iPod/.test(navigator.userAgent)
+
+  const mapsAddress = loc.address ? loc.address.replace('\n', ', ') : ''
+  const googleMapsUrl = `https://maps.google.com/?q=${encodeURIComponent(mapsAddress)}`
+  const appleMapsUrl  = `maps://?q=${encodeURIComponent(mapsAddress)}`
+
+  const handleAddressClick = () => {
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 768
+    if (isMobile) {
+      setShowMapPicker(true)
+    } else {
+      window.open(googleMapsUrl, '_blank', 'noopener,noreferrer')
+    }
+  }
+
   // Close on Escape key
   useEffect(() => {
     const handler = e => { if (e.key === 'Escape') onClose() }
@@ -64,7 +80,11 @@ function LocationModal({ loc, onClose }) {
           </div>
         ) : (
           <div className="loc-modal-body">
-            <div className="loc-modal-row">
+            <button
+              className="loc-modal-row loc-modal-row--clickable"
+              onClick={handleAddressClick}
+              aria-label="Adresse in Karten-App öffnen"
+            >
               <span className="loc-modal-row-icon">📍</span>
               <div>
                 <p className="loc-modal-label">Adresse</p>
@@ -74,15 +94,18 @@ function LocationModal({ loc, onClose }) {
                   ))}
                 </p>
               </div>
-            </div>
+              <span className="loc-modal-row-cta">In Karten öffnen →</span>
+            </button>
 
-            <div className="loc-modal-row">
-              <span className="loc-modal-row-icon">🕐</span>
-              <div>
-                <p className="loc-modal-label">Öffnungszeiten</p>
-                <p className="loc-modal-value">{loc.hours}</p>
+            {loc.hours && (
+              <div className="loc-modal-row">
+                <span className="loc-modal-row-icon">🕐</span>
+                <div>
+                  <p className="loc-modal-label">Öffnungszeiten</p>
+                  <p className="loc-modal-value">{loc.hours}</p>
+                </div>
               </div>
-            </div>
+            )}
 
             {loc.phone && (
               <div className="loc-modal-row">
@@ -96,12 +119,56 @@ function LocationModal({ loc, onClose }) {
               </div>
             )}
 
-            <OrderDropdown
-              label="Jetzt bestellen"
-              buttonClass="loc-modal-cta"
-              wrapperClass="loc-modal-order-picker"
-              openUp
-            />
+            {loc.lieferando && (
+              <OrderDropdown
+                label="Jetzt bestellen"
+                buttonClass="loc-modal-cta"
+                wrapperClass="loc-modal-order-picker"
+                openUp
+              />
+            )}
+          </div>
+        )}
+
+        {showMapPicker && (
+          <div
+            className="map-picker-overlay"
+            onClick={() => setShowMapPicker(false)}
+            role="presentation"
+          >
+            <div
+              className="map-picker-sheet"
+              role="dialog"
+              aria-modal="true"
+              aria-label="In Karten öffnen"
+              onClick={e => e.stopPropagation()}
+            >
+              <p className="map-picker-title">In Karten öffnen</p>
+              <a
+                href={googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="map-picker-btn"
+                onClick={() => setShowMapPicker(false)}
+              >
+                🗺️ Google Maps
+              </a>
+              {isAppleDevice && (
+                <a
+                  href={appleMapsUrl}
+                  className="map-picker-btn"
+                  onClick={() => setShowMapPicker(false)}
+                >
+                  🍎 Apple Maps
+                </a>
+              )}
+              <button
+                className="map-picker-cancel"
+                onClick={() => setShowMapPicker(false)}
+              >
+                Abbrechen
+              </button>
+            </div>
           </div>
         )}
       </div>

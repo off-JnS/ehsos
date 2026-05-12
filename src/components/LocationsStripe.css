@@ -124,6 +124,31 @@
   gap: 16px;
 }
 
+.loc-modal-row--clickable {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.18s;
+  -webkit-tap-highlight-color: transparent;
+}
+.loc-modal-row--clickable:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.loc-modal-row-cta {
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: #f97316;
+  white-space: nowrap;
+  font-weight: 600;
+  align-self: center;
+  flex-shrink: 0;
+}
+
 .loc-modal-row-icon {
   font-size: 1.3rem;
   line-height: 1;
