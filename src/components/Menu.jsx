@@ -11,7 +11,6 @@ const BURGER = [
   { name: 'Blue-Cheese Bacon', price: '11,00 €', allergens: '1, 3, a, d, g, l, m', desc: 'Beef 150g, französischer Blauschimmelkäse, Rinder-Bacon, karamellisierte Zwiebeln und frische Tomaten', img: '/menu-images/burger/Blue Cheese Bacon.jpeg' },
   { name: 'Chili Cheese Burger', price: '10,00 €', allergens: 'a, d, g, l, m', desc: 'Beef 150g, Cheddar, Jalapeños, karamellisierte Zwiebeln und frische Tomaten', img: '/menu-images/burger/Chilli Cheese.jpeg' },
   { name: 'Crispy Chicken Burger', price: '10,00 €', allergens: 'a, d, g, l, m', desc: 'Crispy Chicken 130g, Cheddar, Jalapeños, karamellisierte Zwiebeln, frische Tomaten', img: '/menu-images/burger/Crispy Chicken.jpeg' },
-  { name: 'Chicken Lemon Burger', price: '10,00 €', allergens: 'a, d, g, l, m', desc: '150g mariniertes Hähnchenbrustfilet, Cheddar, karamellisierte Zwiebeln, frische Tomaten und Gewürzgurken', img: '/menu-images/burger/Chicken Lemon.jpeg' },
   { name: "Ehso's Burger", price: '12,00 €', allergens: '1, 2, 3, a, d, g, l, m', badge: 'Hausspecial', desc: 'Beef 150g, Cheddar, Sucuk, Schafskäse, karamellisierte Zwiebeln, frische Tomaten und Gewürzgurken', img: '/menu-images/burger/Ehsos Burger.jpeg' },
 ]
 
@@ -53,7 +52,6 @@ const FINGERFOOD = [
   { name: 'Chicken Wings',        desc: '6 Stück',               price: '6,50 €', allergens: 'a',         img: '/menu-images/fingerfood/Chicken Wings.jpeg' },
   { name: 'Chicken Nuggets',      desc: '6 Stück',               price: '6,50 €', allergens: 'a, g',      img: '/menu-images/fingerfood/Chicken Nuggets.jpeg' },
   { name: 'Chili Cheese Nuggets', desc: '6 Stück',               price: '5,50 €', allergens: 'a, g',      img: '/menu-images/fingerfood/Chilli Cheese Puffers.jpeg' },
-  { name: 'Potato Pops',          desc: 'mit Taco Beef & Cheese', price: '7,50 €', allergens: 'a, g' },
   { name: 'Mozzarella Sticks',    desc: '6 Stück',               price: '5,50 €', allergens: 'a, g',      img: '/menu-images/fingerfood/Mozzarella sticks.jpeg' },
   { name: 'Knoblauchbrot',        desc: 'mit Sour Creme',        price: '4,50 €', allergens: 'a, d, g, l' },
   { name: 'Pommes',               desc: 'klassisch',             price: '3,00 €', allergens: '',          img: '/menu-images/fingerfood/French Fries.jpeg' },
