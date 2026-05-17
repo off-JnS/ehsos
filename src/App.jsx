@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import CookieBanner from './components/CookieBanner'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -24,11 +25,14 @@ function HomePage() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/speisekarte" element={<MenuPage />} />
-      <Route path="/impressum" element={<ImpressumPage />} />
-      <Route path="/datenschutz" element={<DatenschutzPage />} />
-    </Routes>
+    <>
+      <CookieBanner />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/speisekarte" element={<MenuPage />} />
+        <Route path="/impressum" element={<ImpressumPage />} />
+        <Route path="/datenschutz" element={<DatenschutzPage />} />
+      </Routes>
+    </>
   )
 }
